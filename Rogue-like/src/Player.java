@@ -27,23 +27,33 @@ public class Player {
     /**
      * Read user input and update state/perform actions.
      * Call this method every iteration of the main game loop.
+     * @param game The game object this is currenly inside of.
      */
-    public void act() {
+    public void act(Game game) {
         String input = in.nextLine();
+        int xChange = 0, yChange = 0;
         if (input.equalsIgnoreCase("W")) {
-            this.move(0, -1);
+            yChange = -1;
         }
         else if (input.equalsIgnoreCase("S")) {
-            this.move(0, 1);
+            yChange = 1;
         }
         else if (input.equalsIgnoreCase("A")) {
-            this.move(-1, 0);
+            xChange = -1;
         }
         else if (input.equalsIgnoreCase("D")) {
-            this.move(1, 0);
+            xChange = 1;
         }
+
+        if (game.canMoveHere(this.getX() + xChange, this.getY() + yChange))
+            this.move(xChange, yChange);
     }
 
+    /**
+     * Move by specified amount.
+     * @param xChange Amount to move by on x-axis.
+     * @param yChange Amount to move by on y-axis.
+     */
     private void move(int xChange, int yChange) {
         // TODO: Validate the values.
         this.x += xChange;

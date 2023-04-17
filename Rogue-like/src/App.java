@@ -14,7 +14,7 @@ public class App {
         while (running) {
             clrscn();
             game.display();
-            player1.act();
+            player1.act(game);
         }
     }
 

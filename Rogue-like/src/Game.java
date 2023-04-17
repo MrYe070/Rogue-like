@@ -29,6 +29,14 @@ public class Game {
         this.player = player;
     }
 
+    public boolean canMoveHere(int x, int y) {
+        if (!isInBounds(x, y))
+            return false;
+
+        String tile = map[y][x];
+        return tile.equals(" ");
+    }
+
     /**
      * Check whether position is within map bounds.
      * @param x x-coordinate
