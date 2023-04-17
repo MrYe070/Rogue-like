@@ -11,9 +11,7 @@ public class Game {
         String[][] mapCopy = Utils.copyOf(this.map);
 
         // Inside the grid copy, replace tile at player's position with player sprite.
-        if (player != null &&
-            0 < player.getX() && player.getX() < mapCopy[0].length &&
-            0 < player.getY() && player.getY() < mapCopy.length) { // check that player has been added, and is within map bounds.
+        if (player != null && isInBounds(player.getX(), player.getY())) { // check that player has been added, and is within map bounds.
             mapCopy[player.getY()][player.getX()] = player.getSprite();
         }
 
@@ -29,5 +27,19 @@ public class Game {
 
     public void addPlayer(Player player) {
         this.player = player;
+    }
+
+    /**
+     * Check whether position is within map bounds.
+     * @param x x-coordinate
+     * @param y y-coordinate
+     * @return True if within bounds, false otherwise.
+     */
+    private boolean isInBounds(int x, int y) {
+        if (0 <= y && y < this.map.length && 0 <= x && x < this.map[y].length) {
+            return true;
+        }
+
+        return false;
     }
 }
