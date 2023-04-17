@@ -7,14 +7,21 @@ public class Game {
     }
 
     public void display() {
-        for (int i = 0; i < this.map.length; i++) { // for each row of the 2D array
-            for (int j = 0; j < this.map[i].length; j++) {  // for each element of the ith row
-                if (player != null && j == player.getX() && i == player.getY()) {
-                    System.out.print(player.getSprite());
-                }
-                else {
-                    System.out.print(this.map[i][j]);     // print element on ith row, jth column
-                }
+        // Create a copy of the map grid.
+        String[][] mapCopy = Utils.copyOf(this.map);
+
+        // Inside the grid copy, replace tile at player's position with player sprite.
+        if (player != null &&
+            0 < player.getX() && player.getX() < mapCopy[0].length &&
+            0 < player.getY() && player.getY() < mapCopy.length) { // check that player has been added, and is within map bounds.
+            mapCopy[player.getY()][player.getX()] = player.getSprite();
+        }
+
+        // Print out the grid copy.
+
+        for (int i = 0; i < mapCopy.length; i++) { // for each row of the 2D array
+            for (int j = 0; j < mapCopy[i].length; j++) {  // for each element of the ith row
+                System.out.print(mapCopy[i][j]);
             }
             System.out.println();
         }

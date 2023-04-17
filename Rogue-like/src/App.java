@@ -18,6 +18,15 @@ public class App {
             if (input.equalsIgnoreCase("W")) {
                 player1.move(0, -1);
             }
+            else if (input.equalsIgnoreCase("S")) {
+                player1.move(0, 1);
+            }
+            else if (input.equalsIgnoreCase("A")) {
+                player1.move(-1, 0);
+            }
+            else if (input.equalsIgnoreCase("D")) {
+                player1.move(1, 0);
+            }
         }
     }
 
