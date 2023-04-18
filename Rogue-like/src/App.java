@@ -7,6 +7,9 @@ public class App {
 
         Player player1 = new Player(2, 3);
         game.addPlayer(player1);
+
+        Enemy enemy = new Enemy(5, 3);
+        game.addEnemy(enemy);
         
 
         boolean running = true;

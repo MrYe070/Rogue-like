@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Game {
     private String[][] map;
     private Player player;
+    private ArrayList<Enemy> enemies = new ArrayList<>();
 
     public void loadMap(String filename) {
         this.map = Map.loadGrid(filename);
@@ -10,9 +13,16 @@ public class Game {
         // Create a copy of the map grid.
         String[][] mapCopy = Utils.copyOf(this.map);
 
-        // Inside the grid copy, replace tile at player's position with player sprite.
+        // Inside the grid copy, replace tiles at each objects' position with object sprite.
         if (player != null && isInBounds(player.getX(), player.getY())) { // check that player has been added, and is within map bounds.
             mapCopy[player.getY()][player.getX()] = player.getSprite();
+        }
+
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy enemy = enemies.get(i);
+            if (isInBounds(enemy.getX(), enemy.getY())) { // check that enemy object is within map bounds.
+                mapCopy[enemy.getY()][enemy.getX()] = enemy.getSprite();
+            }
         }
 
         // Print out the grid copy.
@@ -27,6 +37,10 @@ public class Game {
 
     public void addPlayer(Player player) {
         this.player = player;
+    }
+
+    public void addEnemy(Enemy enemy) {
+        this.enemies.add(enemy);
     }
 
     public boolean canMoveHere(int x, int y) {
