@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Game {
     private String[][] map;
     private Player player;
-    public ArrayList<Enemy> enemies = new ArrayList<>();    // TODO: Change back to private!!!
+    public ArrayList<Actor> actors = new ArrayList<>();    // TODO: Change back to private!!!
 
     public void loadMap(String filename) {
         this.map = Map.loadGrid(filename);
@@ -13,15 +13,11 @@ public class Game {
         // Create a copy of the map grid.
         String[][] mapCopy = Utils.copyOf(this.map);
 
-        // Inside the grid copy, replace tiles at each objects' position with object sprite.
-        if (player != null && isInBounds(player.getX(), player.getY())) { // check that player has been added, and is within map bounds.
-            mapCopy[player.getY()][player.getX()] = player.getSprite();
-        }
-
-        for (int i = 0; i < enemies.size(); i++) {
-            Enemy enemy = enemies.get(i);
-            if (isInBounds(enemy.getX(), enemy.getY())) { // check that enemy object is within map bounds.
-                mapCopy[enemy.getY()][enemy.getX()] = enemy.getSprite();
+        // Inside the grid copy, replace tile at each Actor's position with Actor's sprite.
+        for (int i = 0; i < actors.size(); i++) {
+            Actor actor = actors.get(i);
+            if (isInBounds(actor.getX(), actor.getY())) { // check that actor is within map bounds.
+                mapCopy[actor.getY()][actor.getX()] = actor.getSprite();
             }
         }
 
@@ -37,14 +33,15 @@ public class Game {
 
     public void addPlayer(Player player) {
         this.player = player;
+        this.actors.add(player);
     }
 
     public Player getPlayer() {
         return this.player;
     }
 
-    public void addEnemy(Enemy enemy) {
-        this.enemies.add(enemy);
+    public void addActor(Actor actor) {
+        this.actors.add(actor);
     }
 
     public boolean canMoveHere(int x, int y) {

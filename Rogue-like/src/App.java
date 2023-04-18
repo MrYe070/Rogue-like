@@ -9,9 +9,9 @@ public class App {
         game.addPlayer(player1);
 
         Enemy enemy = new Enemy(5, 3);
-        game.addEnemy(enemy);
-        game.addEnemy(new Enemy(10, 1));
-        game.addEnemy(new Enemy(11, 4));
+        game.addActor(enemy);
+        game.addActor(new Enemy(10, 1));
+        game.addActor(new Enemy(11, 4));
 
         
 
@@ -20,9 +20,8 @@ public class App {
         while (running) {
             clrscn();
             game.display();
-            player1.act(game);
-            for (int i = 0; i < game.enemies.size(); i++) {
-                game.enemies.get(i).act(game);
+            for (int i = 0; i < game.actors.size(); i++) {
+                game.actors.get(i).act(game);
             }
         }
     }
