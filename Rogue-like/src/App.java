@@ -10,6 +10,9 @@ public class App {
 
         Enemy enemy = new Enemy(5, 3);
         game.addEnemy(enemy);
+        game.addEnemy(new Enemy(10, 1));
+        game.addEnemy(new Enemy(11, 4));
+
         
 
         boolean running = true;
