@@ -20,9 +20,7 @@ public class App {
         while (running) {
             clrscn();
             game.display();
-            for (int i = 0; i < game.actors.size(); i++) {
-                game.actors.get(i).act(game);
-            }
+            game.act();
         }
     }
 

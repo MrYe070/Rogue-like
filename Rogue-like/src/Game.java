@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Game {
     private String[][] map;
     private Player player;
-    public ArrayList<Actor> actors = new ArrayList<>();    // TODO: Change back to private!!!
+    private ArrayList<Actor> actors = new ArrayList<>();
 
     public void loadMap(String filename) {
         this.map = Map.loadGrid(filename);
@@ -28,6 +28,12 @@ public class Game {
                 System.out.print(mapCopy[i][j]);
             }
             System.out.println();
+        }
+    }
+
+    public void act() {
+        for (int i = 0; i < this.actors.size(); i++) {
+            this.actors.get(i).act(this);
         }
     }
 
