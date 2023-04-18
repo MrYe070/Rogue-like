@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Game {
     private String[][] map;
     private Player player;
-    private ArrayList<Enemy> enemies = new ArrayList<>();
+    public ArrayList<Enemy> enemies = new ArrayList<>();    // TODO: Change back to private!!!
 
     public void loadMap(String filename) {
         this.map = Map.loadGrid(filename);
@@ -37,6 +37,10 @@ public class Game {
 
     public void addPlayer(Player player) {
         this.player = player;
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 
     public void addEnemy(Enemy enemy) {

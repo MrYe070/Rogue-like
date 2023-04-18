@@ -18,6 +18,9 @@ public class App {
             clrscn();
             game.display();
             player1.act(game);
+            for (int i = 0; i < game.enemies.size(); i++) {
+                game.enemies.get(i).act(game);
+            }
         }
     }
 
